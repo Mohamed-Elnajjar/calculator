@@ -1,6 +1,7 @@
 var calculator = '';
 var result = 0;
-var numbers = Array.from(document.getElementsByClassName('click'));
+var btn_clicked = Array.from(document.getElementsByClassName('click'));
+var operators = Array.from(document.getElementsByClassName('operator'));
 var btn_result = document.getElementById("btn_result");
 var show_result = document.getElementById('show_result');
 var deleted_all = document.getElementById('deleted_all'); // note name delete is word reversed
@@ -30,7 +31,7 @@ deleted.onclick = () => {
   
 }
 
-numbers.forEach(el => {
+btn_clicked.forEach(el => {
   el.onclick = (event) => {
     
     if(el.innerHTML === ' + ') {
@@ -45,11 +46,14 @@ numbers.forEach(el => {
       counter++;
     }
     if(counter > 1){
-      event.target.disabled = true;
-    }else{
+      operators.forEach(el => {
+        el.disabled = true;
+      });
+      
+      calculator = calculator.slice(0,3);
+    }
       calculator += el.innerHTML;
       show_result.innerHTML = calculator;
-    }
     
   }
 })
@@ -87,7 +91,7 @@ numbers.forEach(el => {
   result2 = result;
   result = 0;
   
-  numbers.forEach(el => {
+  btn_clicked.forEach(el => {
     el.disabled = false;
     
   })
