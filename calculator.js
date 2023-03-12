@@ -20,7 +20,7 @@ deleted.onclick = () => {
   var new_calc = calculator.split('');
   
   let new_calc2 = new_calc.map((el) => {
-    return el == ' ' ? ' ' : el; 
+    return el == ' ' ? '' : el; 
   })
   
   new_calc2.length = --new_calc2.length;
